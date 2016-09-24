@@ -11,7 +11,7 @@
     </style>
     <script>
         function initialize(){
-            var paused = false
+            var stopped = false
             var timerInterval
             var startStopBtn = document.getElementById("startStopBtn")
             //object references
@@ -58,13 +58,17 @@
             if(sec > 00){
                     timerInterval = setInterval(countDown, 1000)
                 }
-	//work here
-            function clearTimer(){
-                clearInterval(timerInterval)
-            }
-            startStopBtn.addEventListener("click", clearTimer)
         })
-        //Updates time input
+        //work here
+        startStopBtn.addEventListener("click", () => {
+        if(stopped == false){
+            clearInterval(timerInterval)
+            stopped = true
+        }else if(stopped == true){
+            setInterval(countDown, 1000)
+            stopped = false
+        }
+        })
         }
         window.addEventListener("load", initialize)
     </script>
