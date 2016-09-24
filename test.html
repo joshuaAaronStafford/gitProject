@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        body{
+            background: grey;
+        }
+        #display{
+            font-size: 80px;
+        }
+    </style>
+    <script>
+        function initialize(){
+            var paused = false
+            var timerInterval
+            var startStopBtn = document.getElementById("startStopBtn")
+            //object references
+            var hoursInput = document.getElementById("hoursInput")
+            var minutesInput = document.getElementById("minutesInput")
+            var secondsInput = document.getElementById("secondsInput")
+            var goBtn = document.getElementById("goBtn")
+            var sec
+            var min
+            var hour
+            function getInput(){
+            sec = secondsInput.value
+            min = minutesInput.value
+            hour = hoursInput.value
+            }
+            window.addEventListener("change", getInput)
+            var display = document.getElementById("display")
+            //logic
+            function countDown(){
+                startStopBtn.style.display = "block"
+                hoursInput.style.display = "none"
+                minutesInput.style.display = "none"
+                secondsInput.style.display = "none"
+                goBtn.style.display = "none"
+                display.innerHTML = hour+":"+min+":"+sec
+                if(sec > 00){
+                    sec--
+                }
+                if(sec == 00 && min != 00){
+                    min--
+                    sec = 60
+                }
+                if(min == 00 && hour != 0){
+                    hour--
+                    min = 59
+                }
+            }
+        //add event listener
+        goBtn.addEventListener("click", countDown)
+        //startStop.addEventListener("click", pausePlay)
+                
+        //start timer
+        goBtn.addEventListener("click", () => {
+            if(sec > 00){
+                    timerInterval = setInterval(countDown, 1000)
+                }
+            function clearTimer(){
+                clearInterval(timerInterval)
+            }
+            startStopBtn.addEventListener("click", clearTimer)
+        })
+        //Updates time input
+        }
+        window.addEventListener("load", initialize)
+    </script>
+</head>
+<body>
+    <input id="hoursInput" type="tel" maxlength="2" value="00">
+    <input id="minutesInput" type="tel" maxlength="2" value="00">
+    <input id="secondsInput" type="tel" maxlength="2" value="00">
+    <input id="goBtn" type="button" value="GO">
+    <div id="timerContainer">
+    <button id="startStopBtn" style="display:none;">&#9658</button>
+    <div id="display"></div>
+    </div>
+</body>
+</html>
