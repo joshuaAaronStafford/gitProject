@@ -61,12 +61,12 @@
         })
         //work here
         startStopBtn.addEventListener("click", () => {
-        if(stopped == false){
+        if(stopped === false){
             clearInterval(timerInterval)
             stopped = true
-        }else if(stopped == true){
-            setInterval(countDown, 1000)
+        }else if(stopped === true){
             stopped = false
+            timerInterval = setInterval(countDown, 1000)
         }
         })
         }
