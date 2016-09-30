@@ -64,9 +64,11 @@
         if(stopped === false){
             clearInterval(timerInterval)
             stopped = true
+            startStopBtn.innerHTML = "&#9613;&#9613;"
         }else if(stopped === true){
-            stopped = false
             timerInterval = setInterval(countDown, 1000)
+            stopped = false
+            startStopBtn.innerHTML = "&#9658"
         }
         })
         }
