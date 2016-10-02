@@ -41,6 +41,15 @@
             var display = document.getElementById("display")
             //logic
             function countDown(){
+                if(sec.toString().length < 2){
+                    sec = "0"+sec
+                }
+                if(min.toString().length < 2){
+                    min = "0"+min
+                }
+                if(hour.toString().length < 2){
+                    hour = "0"+hour
+                }
                 startStopBtn.style.display = "block"
                 hoursInput.style.display = "none"
                 minutesInput.style.display = "none"
